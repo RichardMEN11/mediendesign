@@ -1,16 +1,84 @@
 import React from "react"
 import styled from "styled-components"
-import HeroImg from "../images/Bild12.jpg"
+import BackgroundImage from "gatsby-background-image"
+import Arrow from "../assets/download.svg"
 
 const HeroWrapper = styled.div`
-  background-image: url(HeroImg) center center;
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  > h1 {
+    font-family: "Staatliches";
+    font-size: 6rem;
+    animation: animateIn 1s ease;
+  }
+  > p {
+    font-family: "source sans pro";
+    font-size: 1.5rem;
+    font-weight: 300;
+    animation: fadeIn 1s ease;
+    animation-delay: 5s;
+  }
+
+  @keyframes animateIn {
+    0% {
+      letter-spacing: 1.2rem;
+    }
+
+    100% {
+      letter-spacing: 0rem;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 `
 
-const Hero = () => {
+const Button = styled.a`
+  color: white;
+  background-color: inherit;
+  border: 2px solid white;
+  padding: 0.8rem 3rem;
+  border-radius: 30px;
+  animation: 2s ease all;
+  &:hover {
+    background-color: white;
+    color: black !important;
+    text-decoration: none;
+  }
+`
+
+const Hero = ({ image }) => {
   return (
-    <HeroWrapper className="container-fluid">
-      <h1>NaturPur</h1>
-    </HeroWrapper>
+    <BackgroundImage
+      fluid={image}
+      style={{
+        backgroundPosition: "bottom",
+        backgroundSize: "cover",
+        width: "100vw",
+        height: "100vh",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div id="first">
+        <HeroWrapper className="container-fluid">
+          <h1>NaturPur</h1>
+          <p>Pariatur veniam et minim est mollit ea non sunt et ad Lorem.</p>
+          <Button href="#second">Mehr Erfahren</Button>
+        </HeroWrapper>
+      </div>
+    </BackgroundImage>
   )
 }
 

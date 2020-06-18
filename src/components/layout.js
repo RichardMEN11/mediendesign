@@ -10,8 +10,21 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { ThemeProvider } from "styled-components"
 import theme from "../style/theme"
+import styled from "styled-components"
+import { createGlobalStyle } from "styled-components"
 
 import Header from "./header"
+import Footer from "./Footer"
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    scroll-behavior: smooth;
+  }
+`
+
+const Background = styled.div`
+  background-color: #0c1508;
+`
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -27,17 +40,12 @@ const Layout = ({ children }) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0 1.0875rem 1.45rem`,
-          }}
-        >
+        <GlobalStyle></GlobalStyle>
+        <Background>
+          <Header siteTitle={data.site.siteMetadata.title} />
           <main>{children}</main>
-          <footer></footer>
-        </div>
+          <Footer />
+        </Background>
       </ThemeProvider>
     </>
   )

@@ -1,37 +1,43 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
 import styled from "styled-components"
+import { Navbar, Nav } from "react-bootstrap"
 
-const HeaderWrapper = styled.div`
+const StyledNavBar = styled(Navbar)`
+  color: white;
   display: flex;
-  justify-content: space-between;
-  padding-left: 5%;
-  padding-right: 5%;
+  flex-direction: row;
   width: 100%;
-  padding-top: 2%;
-  border-bottom: 0.1px solid grey;
-  background-color: inherit;
-`
-
-const Menu = styled.ul`
-  list-style: none;
-  display: flex;
-  > li:not(:first-child) {
-    padding-left: 3%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #152210;
+  > div {
+    display: flex;
+    justify-content: space-between;
+  }
+  a {
+    color: white;
+    padding: 0.5rem;
+  }
+  a:hover {
+    text-decoration: none;
   }
 `
 
-const Header = ({ siteTitle }) => (
-  <HeaderWrapper>
-    <div>Logo</div>
-    <Menu>
-      <li>Home</li>
-      <li>Führungen</li>
-      <li>Öffnungszeiten</li>
-      <li>Anfahrt</li>
-    </Menu>
-  </HeaderWrapper>
-)
+const Header = ({ siteTitle }) => {
+  return (
+    <StyledNavBar expand="lg" sticky="top">
+      <Navbar.Brand href="#">Navbar</Navbar.Brand>
+      <div className="mr-5">
+        <a href="#first">Home</a>
+
+        <a href="#second">Über uns</a>
+
+        <a href="#third">Führungen</a>
+
+        <a href="#fourth">Preise</a>
+      </div>
+    </StyledNavBar>
+  )
+}
 
 export default Header

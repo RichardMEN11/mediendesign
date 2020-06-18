@@ -1,5 +1,6 @@
 const theme = {
-  color: "red",
+  primary: "red",
+  secondary: "brown",
 }
 
 export default theme
