@@ -59,26 +59,26 @@ const Button = styled.a`
   }
 `
 
-const Hero = ({ image }) => {
+const Background = styled.div`
+  background: ${props => `url(${props.img})`};
+  background-position: bottom;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+`
+
+const Hero = ({ image, title, subtitle }) => {
   return (
-    <BackgroundImage
-      fluid={image}
-      style={{
-        backgroundPosition: "bottom",
-        backgroundSize: "cover",
-        width: "100vw",
-        height: "100vh",
-        backgroundAttachment: "fixed",
-      }}
-    >
+    <Background img={image.source_url}>
       <div id="first">
         <HeroWrapper className="container-fluid">
-          <h1>NaturPur</h1>
-          <p>Pariatur veniam et minim est mollit ea non sunt et ad Lorem.</p>
+          <h1>{title}</h1>
+          <p>{subtitle}</p>
           <Button href="#second">Mehr Erfahren</Button>
         </HeroWrapper>
       </div>
-    </BackgroundImage>
+    </Background>
   )
 }
 

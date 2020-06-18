@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Navbar, Nav } from "react-bootstrap"
+import { useStaticQuery, graphql } from "gatsby"
 
 const StyledNavBar = styled(Navbar)`
   color: white;
@@ -24,9 +25,26 @@ const StyledNavBar = styled(Navbar)`
 `
 
 const Header = ({ siteTitle }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      text: allWordpressPage(filter: { title: { eq: "Home" } }) {
+        edges {
+          node {
+            acf {
+              logo {
+                source_url
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
   return (
     <StyledNavBar expand="lg" sticky="top">
-      <Navbar.Brand href="#">Navbar</Navbar.Brand>
+      <Navbar.Brand href="#">
+        <img src={data.text.edges[0].node.acf.logo.source_url} width="50" />
+      </Navbar.Brand>
       <div className="mr-5">
         <a href="#first">Home</a>
 

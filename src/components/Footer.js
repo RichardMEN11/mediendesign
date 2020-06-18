@@ -1,9 +1,13 @@
 import React from "react"
 import styled from "styled-components"
+import { useStaticQuery, graphql } from "gatsby"
 
 const StyledFooter = styled.footer`
   background-color: #152210;
   color: white;
+  font-family: "source sans pro";
+  font-size: 1rem;
+  font-weight: 300;
 `
 
 const Heading = styled.h6`
@@ -18,42 +22,51 @@ const Menu = styled.ul`
   font-weight: 300;
 `
 
-const Text = styled.p`
-  font-family: "source sans pro";
-  font-size: 1rem;
-  font-weight: 300;
-`
-
 const Footer = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      text: allWordpressPage(filter: { title: { eq: "Home" } }) {
+        edges {
+          node {
+            acf {
+              footerkontakt
+              footeropen
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const createMarkup = html => {
+    return { __html: html }
+  }
   return (
     <>
       <StyledFooter className="container-fluid">
         <div className="container mt-5 py-5">
           <div className="row">
             <div className="col-md-4">
-              <Heading>Kontakt</Heading>
-              <Text>
-                Nostrud mollit occaecat ut cupidatat incididunt officia non
-                commodo dolore consequat aliqua sit. Incididunt in esse ut in.
-                Id minim deserunt amet aliqua. Magna sit veniam consectetur esse
-                ipsum ullamco laborum Lorem.
-              </Text>
+              <Heading className="my-3">Kontakt</Heading>
+              <div
+                dangerouslySetInnerHTML={createMarkup(
+                  data.text.edges[0].node.acf.footerkontakt
+                )}
+              ></div>
             </div>
             <div className="col-md-4">
-              <Heading>Links</Heading>
-              <Menu>
-                <li>Museum Natur Pur</li>
-                <li>Museum Natur Pur</li>
-                <li>Museum Natur Pur</li>
-              </Menu>
+              <Heading className="my-3">Öffnungszeiten</Heading>
+              <div
+                dangerouslySetInnerHTML={createMarkup(
+                  data.text.edges[0].node.acf.footeropen
+                )}
+              ></div>
             </div>
             <div className="col-md-4">
-              <Heading>Social Media</Heading>
-              <Menu>
-                <li>Facebook</li>
-                <li>Instagram</li>
-                <li>Tinder</li>
-              </Menu>
+              <Heading className="my-3">Social Media</Heading>
+              Facebook
+              <br />
+              Instagram
             </div>
           </div>
         </div>

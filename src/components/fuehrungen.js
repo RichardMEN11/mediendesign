@@ -40,9 +40,22 @@ const SmallCard = styled.div`
 `
 
 const ImageWrapper = styled.div`
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `
-const Fuehrungen = ({ image }) => {
+const Fuehrungen = ({
+  image,
+  fuehrungeinstitle,
+  fuehrungeinssubtitle,
+  fuehrungeinsdesc,
+  fuehrungeinsimg,
+  fuehrungzweititle,
+  fuehrungzweisubtitle,
+  fuehrungzweidesc,
+  fuehrungzweiimg,
+}) => {
   return (
     <div className="container" id="third">
       <div className="row">
@@ -50,26 +63,22 @@ const Fuehrungen = ({ image }) => {
           <Card>
             <div className="row">
               <div className="col-md-6 left">
-                <span>Subtitle</span>
-                <h3>Führung 1</h3>
-                <p>
-                  Reprehenderit ex veniam dolore labore tempor elit cupidatat
-                  commodo. Ut dolore consectetur esse amet id nulla et. Cillum
-                  qui adipisicing deserunt est sunt nisi sit excepteur esse id.
-                  Do tempor pariatur fugiat occaecat officia est deserunt
-                  laboris aliqua sunt ut dolore proident veniam.
-                </p>
+                <span>{fuehrungeinssubtitle}</span>
+                <h3>{fuehrungeinstitle}</h3>
+                <p>{fuehrungeinsdesc}</p>
                 <Button>Buchen</Button>
               </div>
               <div className="col-md-6">
                 <ImageWrapper>
-                  <SmallCard></SmallCard>
-                  <Image
-                    fluid={image}
+                  <img
+                    src={fuehrungeinsimg.source_url}
                     style={{
                       borderTopRightRadius: "0.2rem",
                       borderbottomRightRadius: "0.2rem",
+                      height: "100%",
+                      width: "100%",
                     }}
+                    className="img"
                   />
                 </ImageWrapper>
               </div>
@@ -82,24 +91,21 @@ const Fuehrungen = ({ image }) => {
           <Card>
             <div className="row">
               <div className="col-md-6 left">
-                <span>Subtitle</span>
-                <h3>Führung 1</h3>
-                <p>
-                  Reprehenderit ex veniam dolore labore tempor elit cupidatat
-                  commodo. Ut dolore consectetur esse amet id nulla et. Cillum
-                  qui adipisicing deserunt est sunt nisi sit excepteur esse id.
-                  Do tempor pariatur fugiat occaecat officia est deserunt
-                  laboris aliqua sunt ut dolore proident veniam.
-                </p>
+                <span>{fuehrungzweisubtitle}</span>
+                <h3>{fuehrungzweititle}</h3>
+                <p>{fuehrungzweidesc}</p>
                 <Button>Buchen</Button>
               </div>
               <div className="col-md-6">
-                <Image
-                  fluid={image}
+                <img
+                  src={fuehrungzweiimg.source_url}
                   style={{
                     borderTopRightRadius: "0.2rem",
                     borderbottomRightRadius: "0.2rem",
+                    height: "100%",
+                    width: "100%",
                   }}
+                  className="img"
                 />
               </div>
             </div>

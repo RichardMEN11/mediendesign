@@ -1,6 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import Family from "../assets/family.svg"
+import Group from "../assets/group.svg"
+import Book from "../assets/book.svg"
+import User from "../assets/user.svg"
 
 const Headline = styled.h4`
   font-family: "Staatliches";
@@ -9,6 +12,19 @@ const Headline = styled.h4`
 `
 
 const StyledFamily = styled(Family)`
+  width: 20%;
+  margin: 0.5rem;
+`
+const StyledBook = styled(Book)`
+  width: 20%;
+  margin: 0.5rem;
+`
+const StyledUser = styled(User)`
+  width: 20%;
+  margin: 0.5rem;
+`
+
+const StyledGroup = styled(Group)`
   width: 20%;
   margin: 0.5rem;
 `
@@ -26,36 +42,45 @@ const Card = styled.div`
   }
 `
 
-const Preise = () => {
+const Preise = ({
+  preisEins,
+  preisZwei,
+  preisDrei,
+  preisVier,
+  preisEinsTitle,
+  preisZweiTitle,
+  preisDreiTitle,
+  preisVierTitle,
+}) => {
   return (
     <div className="container my-5 py-5" id="fourth">
       <div className="row">
         <div className="col-md-3">
           <Card>
-            <StyledFamily />
-            <Headline>Preis Nr. 1</Headline>
-            <span>10,00 €</span>
+            <StyledUser />
+            <Headline>{preisEinsTitle}</Headline>
+            <span>{preisEins}</span>
+          </Card>
+        </div>
+        <div className="col-md-3">
+          <Card>
+            <StyledBook />
+            <Headline>{preisZweiTitle}</Headline>
+            <span>{preisZwei}</span>
           </Card>
         </div>
         <div className="col-md-3">
           <Card>
             <StyledFamily />
-            <Headline>Preis Nr. 1</Headline>
-            <span>10,00 €</span>
+            <Headline>{preisDreiTitle}</Headline>
+            <span>{preisDrei}</span>
           </Card>
         </div>
         <div className="col-md-3">
           <Card>
-            <StyledFamily />
-            <Headline>Preis Nr. 1</Headline>
-            <span>10,00 €</span>
-          </Card>
-        </div>
-        <div className="col-md-3">
-          <Card>
-            <StyledFamily />
-            <Headline>Preis Nr. 1</Headline>
-            <span>10,00 €</span>
+            <StyledGroup />
+            <Headline>{preisVierTitle}</Headline>
+            <span>{preisVier}</span>
           </Card>
         </div>
       </div>

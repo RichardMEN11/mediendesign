@@ -37,7 +37,7 @@ module.exports = {
          * The base URL of the WordPress site without the trailingslash and the protocol. This is required.
          * Example : 'demo.wp-api.org' or 'www.example-site.com'
          */
-        baseUrl: "http://wp121.wplab01.hs-rw.de/",
+        baseUrl: "http://wp22.wplab01.hs-rw.de",
         protocol: "http",
         // The rest api route prefix that your WordPress site is using.
         // Sometimes this is modified by WordPress plugins.

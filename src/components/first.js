@@ -26,12 +26,12 @@ const Background = styled.div`
   }
 `
 
-const First = () => {
+const First = ({ title }) => {
   return (
     <Background className="container-fluid">
       <div className="container">
         <div className="row">
-          <h2>Museum Natur Pur</h2>
+          <h2>{title}</h2>
         </div>
       </div>
     </Background>

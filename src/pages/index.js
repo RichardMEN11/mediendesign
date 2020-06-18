@@ -9,31 +9,80 @@ import Zeiten from "../components/zeiten"
 import Preise from "../components/preise"
 import First from "../components/first"
 
-const IndexPage = ({ data }) => (
-  <Layout>
-    <SEO title="Home" />
-    <Hero image={data.imageOne.childImageSharp.fluid}></Hero>
-    <First />
-    <div id="second">
-      <TextSection
-        title="Placeholder"
-        text="Lorem consequat amet velit qui minim velit cillum excepteur aute culpa veniam enim amet."
+const IndexPage = ({ data }) => {
+  const {
+    title,
+    subtitle,
+    bigtitle,
+    firsttexttitle,
+    firsttext,
+    firsttextimage,
+    secondtexttitle,
+    secondtext,
+    secondtextimage,
+    heroimage,
+    fuehrungeinstitle,
+    fuehrungeinssubtitle,
+    fuehrungeinsdesc,
+    fuehrungeinsimg,
+    fuehrungzweititle,
+    fuehrungzweisubtitle,
+    fuehrungzweidesc,
+    fuehrungzweiimg,
+    preiseins,
+    preiszwei,
+    preisdrei,
+    preisvier,
+    preiseinstitle,
+    preiszweititle,
+    preisdreititle,
+    preisviertitle,
+  } = data.text.edges[0].node.acf
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <Hero image={heroimage} title={title} subtitle={subtitle}></Hero>
+      <First title={bigtitle} />
+      <div id="second">
+        <TextSection
+          title={firsttexttitle}
+          text={firsttext}
+          image={firsttextimage}
+          posText={1}
+          posImg={2}
+        />
+        <TextSection
+          title={secondtexttitle}
+          text={secondtext}
+          image={secondtextimage}
+          posText={2}
+          posImg={1}
+        />
+      </div>
+      <Fuehrungen
         image={data.imageOne.childImageSharp.fluid}
-        posText={1}
-        posImg={2}
+        fuehrungeinstitle={fuehrungeinstitle}
+        fuehrungeinssubtitle={fuehrungeinssubtitle}
+        fuehrungeinsdesc={fuehrungeinsdesc}
+        fuehrungeinsimg={fuehrungeinsimg}
+        fuehrungzweititle={fuehrungzweititle}
+        fuehrungzweisubtitle={fuehrungzweisubtitle}
+        fuehrungzweidesc={fuehrungzweidesc}
+        fuehrungzweiimg={fuehrungzweiimg}
       />
-      <TextSection
-        title="Placeholder"
-        text="Lorem consequat amet velit qui minim velit cillum excepteur aute culpa veniam enim amet."
-        image={data.imageOne.childImageSharp.fluid}
-        posText={2}
-        posImg={1}
+      <Preise
+        preisEins={preiseins}
+        preisZwei={preiszwei}
+        preisDrei={preisdrei}
+        preisVier={preisvier}
+        preisEinsTitle={preiseinstitle}
+        preisZweiTitle={preiszweititle}
+        preisDreiTitle={preisdreititle}
+        preisVierTitle={preisviertitle}
       />
-    </div>
-    <Fuehrungen image={data.imageOne.childImageSharp.fluid} />
-    <Preise />
-  </Layout>
-)
+    </Layout>
+  )
+}
 
 export default IndexPage
 
@@ -51,6 +100,50 @@ export const pageQuery = graphql`
   query {
     imageOne: file(relativePath: { eq: "Bild12.jpg" }) {
       ...fluidImage
+    }
+    text: allWordpressPage(filter: { title: { eq: "Home" } }) {
+      edges {
+        node {
+          acf {
+            title
+            subtitle
+            bigtitle
+            firsttexttitle
+            firsttext
+            firsttextimage {
+              source_url
+            }
+            secondtexttitle
+            secondtext
+            secondtextimage {
+              source_url
+            }
+            heroimage {
+              source_url
+            }
+            fuehrungeinstitle
+            fuehrungeinssubtitle
+            fuehrungeinsdesc
+            fuehrungeinsimg {
+              source_url
+            }
+            fuehrungzweititle
+            fuehrungzweisubtitle
+            fuehrungzweidesc
+            fuehrungzweiimg {
+              source_url
+            }
+            preiseins
+            preiszwei
+            preisdrei
+            preisvier
+            preiseinstitle
+            preiszweititle
+            preisdreititle
+            preisviertitle
+          }
+        }
+      }
     }
   }
 `
