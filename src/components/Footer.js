@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
+import Data from "../data/data.json"
 
 const StyledFooter = styled.footer`
   background-color: #152210;
@@ -23,21 +24,6 @@ const Menu = styled.ul`
 `
 
 const Footer = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      text: allWordpressPage(filter: { title: { eq: "Home" } }) {
-        edges {
-          node {
-            acf {
-              footerkontakt
-              footeropen
-            }
-          }
-        }
-      }
-    }
-  `)
-
   const createMarkup = html => {
     return { __html: html }
   }
@@ -49,17 +35,13 @@ const Footer = () => {
             <div className="col-md-4">
               <Heading className="my-3">Kontakt</Heading>
               <div
-                dangerouslySetInnerHTML={createMarkup(
-                  data.text.edges[0].node.acf.footerkontakt
-                )}
+                dangerouslySetInnerHTML={createMarkup(Data.footerkontakt)}
               ></div>
             </div>
             <div className="col-md-4">
               <Heading className="my-3">Öffnungszeiten</Heading>
               <div
-                dangerouslySetInnerHTML={createMarkup(
-                  data.text.edges[0].node.acf.footeropen
-                )}
+                dangerouslySetInnerHTML={createMarkup(Data.footeropen)}
               ></div>
             </div>
             <div className="col-md-4">

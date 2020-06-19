@@ -71,7 +71,7 @@ const Fuehrungen = ({
               <div className="col-md-6">
                 <ImageWrapper>
                   <img
-                    src={fuehrungeinsimg.source_url}
+                    src={fuehrungeinsimg}
                     style={{
                       borderTopRightRadius: "0.2rem",
                       borderbottomRightRadius: "0.2rem",
@@ -98,7 +98,7 @@ const Fuehrungen = ({
               </div>
               <div className="col-md-6">
                 <img
-                  src={fuehrungzweiimg.source_url}
+                  src={fuehrungzweiimg}
                   style={{
                     borderTopRightRadius: "0.2rem",
                     borderbottomRightRadius: "0.2rem",

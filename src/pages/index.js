@@ -8,142 +8,56 @@ import Fuehrungen from "../components/fuehrungen"
 import Zeiten from "../components/zeiten"
 import Preise from "../components/preise"
 import First from "../components/first"
+import Data from "../data/data.json"
+import firsttextimage from "../images/Bild10.png"
+import secondtextimage from "../images/Bild13.jpg"
+import fuehrungeinsimg from "../images/Bild5.jpg"
+import fuehrungzweiimg from "../images/Bild2.jpg"
 
-const IndexPage = ({ data }) => {
-  const {
-    title,
-    subtitle,
-    bigtitle,
-    firsttexttitle,
-    firsttext,
-    firsttextimage,
-    secondtexttitle,
-    secondtext,
-    secondtextimage,
-    heroimage,
-    fuehrungeinstitle,
-    fuehrungeinssubtitle,
-    fuehrungeinsdesc,
-    fuehrungeinsimg,
-    fuehrungzweititle,
-    fuehrungzweisubtitle,
-    fuehrungzweidesc,
-    fuehrungzweiimg,
-    preiseins,
-    preiszwei,
-    preisdrei,
-    preisvier,
-    preiseinstitle,
-    preiszweititle,
-    preisdreititle,
-    preisviertitle,
-  } = data.text.edges[0].node.acf
+const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <Hero image={heroimage} title={title} subtitle={subtitle}></Hero>
-      <First title={bigtitle} />
+      <Hero title={Data.title} subtitle={Data.subtitle}></Hero>
+      <First title={Data.bigtitle} />
       <div id="second">
         <TextSection
-          title={firsttexttitle}
-          text={firsttext}
+          title={Data.firsttexttitle}
+          text={Data.firsttext}
           image={firsttextimage}
           posText={1}
           posImg={2}
         />
         <TextSection
-          title={secondtexttitle}
-          text={secondtext}
+          title={Data.secondtexttitle}
+          text={Data.secondtext}
           image={secondtextimage}
           posText={2}
           posImg={1}
         />
       </div>
       <Fuehrungen
-        image={data.imageOne.childImageSharp.fluid}
-        fuehrungeinstitle={fuehrungeinstitle}
-        fuehrungeinssubtitle={fuehrungeinssubtitle}
-        fuehrungeinsdesc={fuehrungeinsdesc}
+        fuehrungeinstitle={Data.fuehrungeinstitle}
+        fuehrungeinssubtitle={Data.fuehrungeinssubtitle}
+        fuehrungeinsdesc={Data.fuehrungeinsdesc}
         fuehrungeinsimg={fuehrungeinsimg}
-        fuehrungzweititle={fuehrungzweititle}
-        fuehrungzweisubtitle={fuehrungzweisubtitle}
-        fuehrungzweidesc={fuehrungzweidesc}
+        fuehrungzweititle={Data.fuehrungzweititle}
+        fuehrungzweisubtitle={Data.fuehrungzweisubtitle}
+        fuehrungzweidesc={Data.fuehrungzweidesc}
         fuehrungzweiimg={fuehrungzweiimg}
       />
       <Preise
-        preisEins={preiseins}
-        preisZwei={preiszwei}
-        preisDrei={preisdrei}
-        preisVier={preisvier}
-        preisEinsTitle={preiseinstitle}
-        preisZweiTitle={preiszweititle}
-        preisDreiTitle={preisdreititle}
-        preisVierTitle={preisviertitle}
+        preisEins={Data.preiseins}
+        preisZwei={Data.preiszwei}
+        preisDrei={Data.preisdrei}
+        preisVier={Data.preisvier}
+        preisEinsTitle={Data.preiseinstitle}
+        preisZweiTitle={Data.preiszweititle}
+        preisDreiTitle={Data.preisdreititle}
+        preisVierTitle={Data.preisviertitle}
       />
     </Layout>
   )
 }
 
 export default IndexPage
-
-export const fluidImage = graphql`
-  fragment fluidImage on File {
-    childImageSharp {
-      fluid(maxWidth: 1000) {
-        ...GatsbyImageSharpFluid
-      }
-    }
-  }
-`
-
-export const pageQuery = graphql`
-  query {
-    imageOne: file(relativePath: { eq: "Bild12.jpg" }) {
-      ...fluidImage
-    }
-    text: allWordpressPage(filter: { title: { eq: "Home" } }) {
-      edges {
-        node {
-          acf {
-            title
-            subtitle
-            bigtitle
-            firsttexttitle
-            firsttext
-            firsttextimage {
-              source_url
-            }
-            secondtexttitle
-            secondtext
-            secondtextimage {
-              source_url
-            }
-            heroimage {
-              source_url
-            }
-            fuehrungeinstitle
-            fuehrungeinssubtitle
-            fuehrungeinsdesc
-            fuehrungeinsimg {
-              source_url
-            }
-            fuehrungzweititle
-            fuehrungzweisubtitle
-            fuehrungzweidesc
-            fuehrungzweiimg {
-              source_url
-            }
-            preiseins
-            preiszwei
-            preisdrei
-            preisvier
-            preiseinstitle
-            preiszweititle
-            preisdreititle
-            preisviertitle
-          }
-        }
-      }
-    }
-  }
-`

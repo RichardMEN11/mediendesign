@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import BackgroundImage from "gatsby-background-image"
 import Arrow from "../assets/download.svg"
+import Img from "../images/Bild12.jpg"
 
 const HeroWrapper = styled.div`
   height: 80vh;
@@ -70,7 +71,7 @@ const Background = styled.div`
 
 const Hero = ({ image, title, subtitle }) => {
   return (
-    <Background img={image.source_url}>
+    <Background img={Img}>
       <div id="first">
         <HeroWrapper className="container-fluid">
           <h1>{title}</h1>

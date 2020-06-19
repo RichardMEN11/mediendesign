@@ -34,7 +34,7 @@ const TextSection = ({ title, text, image, posText, posImg }) => {
           </FlexContainer>
         </div>
         <div className={`col-md-6 order-${posImg}`}>
-          <img src={image.source_url} className="img-fluid" />
+          <img src={image} className="img-fluid" />
         </div>
       </div>
     </div>
